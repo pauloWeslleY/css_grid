@@ -2,37 +2,75 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-.wrapper * {
-	background-color: #4169e1;
-	padding: 1rem;
+.con__article {
+	display: grid;
+	grid-gap: 0.5rem;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-areas:
+		'title  title   title   title  title  title'
+		'meta   meta    meta 	meta   meta   meta'
+		'copy1  copy1   copy1   copy1  copy1  copy1'
+		'copy2  copy2   copy2   copy2  copy2  copy2'
+		'media  media   media   media  media  media'
+		'aside  aside   aside   aside  aside  aside';
 
-	font-size: 2rem;
-}
+	margin: 0 auto;
+	max-width: 1024px;
 
-.wrapper *:nth-child(even) {
-	background-color: #87ceeb;
-}
-
-@media (min-width: 768px) {
-	.wrapper {
-		display: grid;
-
-		grid-template-columns: [site-start] 1fr [content-start] repeat(4, 1fr) [site-end];
-		grid-template-rows: [site-top] 200px [content-top] 200px [content-bottom] 200px [site-bottom];
-		grid-gap: 0.5rem;
+	& > * {
+		min-height: 100px;
+		padding: 1rem;
 	}
 }
 
-header,
-footer {
-	grid-column: site;
+@media screen and (min-width: 30em) {
+	.con__article {
+		grid-template-areas:
+			'meta  meta   title   title  title  title'
+			'copy1  copy1   copy1   copy1  copy1  copy1'
+			'copy2  copy2   copy2   copy2  copy2  copy2'
+			'media  media   media   media  media  aside';
+	}
 }
 
-main {
-	grid-column: content;
+@media screen and (min-width: 60em) {
+	.con__article {
+		grid-template-areas:
+			'meta   title   title   title  copy2  copy2'
+			'copy1  copy1   copy1   copy1  copy2  copy2'
+			'copy1  copy1   copy1   copy1  copy2  copy2'
+			'media  media   media   media  media  media'
+			'aside  aside   .   	   .      .      .    ';
+	}
 }
 
-aside {
-	grid-column: site-start / content-start;
-	grid-row: content-top / content-bottom;
+.art__header_title {
+	background-color: #00ced1;
+	grid-area: title;
+}
+
+.art__aside_meta {
+	background-color: #d3d3d3;
+	grid-area: meta;
+}
+
+.art__section_copy1 {
+	background-color: #4169e1;
+	grid-area: copy1;
+}
+
+.art__section_copy2 {
+	background-color: #bc8f8f;
+	grid-area: copy2;
+}
+
+.art__figure_media {
+	background-color: #f0e68c;
+	grid-area: media;
+	margin: 0;
+}
+
+.art__article_aside {
+	background-color: #ff7f50;
+	grid-area: aside;
 }
